@@ -1,0 +1,35 @@
+public class Program
+{
+    public static void Main()
+    {
+        try
+        {
+            Console.Write("Введите имя президента: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Введите срок президентства (в годах): ");
+            int term = int.Parse(Console.ReadLine());
+
+            USPresident president = new USPresident(name, term);
+            Console.WriteLine(president.GetPresidentInfo());
+
+            Console.Write("Введите политическое решение: ");
+            string decision = Console.ReadLine();
+
+            Console.WriteLine(president.MakeDecision(decision));
+
+            Console.Write("Введите новый срок президентства: ");
+            int newTerm = int.Parse(Console.ReadLine());
+
+            president.SetTerm(newTerm); // Попытка изменения срока
+        }
+        catch (InvalidOperationException e)
+        {
+            Console.WriteLine($"Ошибка: {e.Message}");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Ошибка: введите корректное числовое значение для срока.");
+        }
+    }
+}
