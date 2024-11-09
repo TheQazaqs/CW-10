@@ -1,0 +1,30 @@
+public class USPresident
+{
+    public string Name { get; private set; }
+    private int term;
+
+    public delegate string DecisionDelegate(string decision);
+    public DecisionDelegate MakeDecision;
+
+    public USPresident(string name, int term)
+    {
+        Name = name;
+        SetTerm(term);
+
+        MakeDecision = (decision) => $"{Name} принял решение: {decision}";
+    }
+
+    public void SetTerm(int years)
+    {
+        if (years > 8)
+        {
+            throw new InvalidOperationException("Срок превышает допустимое количество лет для президентства");
+        }
+        term = years;
+    }
+
+    public string GetPresidentInfo()
+    {
+        return $"Президент: {Name}, Срок президентства: {term} лет";
+    }
+}
